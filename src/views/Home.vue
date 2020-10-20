@@ -7,21 +7,6 @@
       Year: <input v-model="newMovieYear" type="text"><br><br>
       Plot: <input v-model="newMoviePlot" type="text"><br><br>
       Director: <input v-model="newMovieDirector" type="text"><br><br>
-      <h4>Choose Genres:</h4> 
-      <input type="checkbox" id="drama" value="1" v-model="newMovieGenre">
-      <label for="drama">Drama</label>
-      <input type="checkbox" id="comedy" value="2" v-model="newMovieGenre">
-      <label for="comedy">Comedy</label>
-      <input type="checkbox" id="western" value="3" v-model="newMovieGenre">
-      <label for="western">Western</label>
-      <input type="checkbox" id="thriller" value="4" v-model="newMovieGenre">
-      <label for="thriller">Thriller</label>
-      <input type="checkbox" id="action" value="5" v-model="newMovieGenre">
-      <label for="action">Action</label>
-      
-      <!-- <input v-model="newMovieEnglish" type="checkbox" id="english" 
-         checked>
-      <label  for="english">english</label><br> -->
      <button v-on:click="createMovie()">Add</button>
    </div>
 
@@ -46,7 +31,7 @@
         <p>Director: <input type="text" v-model="currentMovie.director"></p>
         <p>Plot: <input type="text" v-model="currentMovie.plot"></p>
         <button v-on:click="updateMovie(currentMovie)">Update</button>
-        <button v-on:click="deleteMovie(currentMovie)">delete</button>
+        <button v-on:click="destroyMovie(currentMovie)">delete</button>
         <button>Close</button>
       </form>
     </dialog>
@@ -126,7 +111,7 @@ export default {
       });
     },
     destroyRecipe: function (movie) {
-      axois.delete(`/api/movies/${movie.id}`).then(response => {
+      axios.delete(`/api/movies/${movie.id}`).then(response => {
         console.log("Success", response.data);
         var index = this.movies.indexOf(movie);
         this.movies.splice(index, 1);
