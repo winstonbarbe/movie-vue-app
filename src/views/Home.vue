@@ -110,7 +110,7 @@ export default {
         console.log(error.response.data.errors);
       });
     },
-    destroyRecipe: function (movie) {
+    destroyMovie: function (movie) {
       axios.delete(`/api/movies/${movie.id}`).then(response => {
         console.log("Success", response.data);
         var index = this.movies.indexOf(movie);
