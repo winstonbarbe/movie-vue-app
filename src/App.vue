@@ -1,39 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/movies">Movies</router-link> |
-      <router-link to="/movies/new">New</router-link> |
-      <router-link v-if="!isLoggedIn()" to="/signup">Signup</router-link>
-      <router-link v-if="!isLoggedIn()" to="/login">Login</router-link>
-      <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link>
-    </div>
+    <header id="fh5co-header" role="banner">
+      <div class="container">
+        <div class="header-inner">
+          <h1><router-link to="/movies">Movies</router-link></h1>
+          <nav role="navigation">
+            <ul>
+              <li><router-link to="/movies/new">New</router-link></li>
+              <li v-if="!isLoggedIn()">
+                <router-link to="/login">Login</router-link>
+              </li>
+              <li v-if="isLoggedIn()">
+                <router-link to="/logout">Logout</router-link>
+              </li>
+              <li v-if="!isLoggedIn()" class="cta">
+                <router-link to="/signup">Signup</router-link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
     <router-view />
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
 
 <script>
 export default {
